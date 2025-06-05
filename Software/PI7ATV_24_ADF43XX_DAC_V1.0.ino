@@ -12,13 +12,12 @@ Inspired by:
  
  V 0.1 Ondra OK1CDJ 9/2018 ondra@ok1cdj.com
  
- Parts of this code is based on routines written by PA3FYM
-
  Morse Based on Simple Arduino Morse Beacon  
  Written by Mark VandeWettering K6HX
 
  PI4 sending from code from BO OZ2M, https://www.rudius.net/oz2m/ 
  PI4 Data created by https://rudius.net/oz2m/ngnb/pi4encoding.php
+ or use PI4.Delphi
  
  PI4, 146 symbols take 24.333382s
  ~ symbol time = 166.664ms
@@ -53,7 +52,9 @@ Inspired by:
  PI4 tone2 :  24.048.900.351,5625 Hz
  PI4 tone3 :  24.048.900.585,9375 Hz
 
- Calculated /18 Frequencies PI7ALK 24GHz beacon
+ Calculated Divided/18 Frequencies output voor
+ de PLL that drives the multiplier for PI7ATV
+ 24GHz beacon
 
  CW-Mark   : 1.336.050,000,00000 Hz : 0x7DC8
  CW-Space  : 1.336.049.977,77777 Hz : 0x7C92
@@ -63,13 +64,6 @@ Inspired by:
  PI4 tone2 : 1.336.050.675,78125 Hz : 0x7EB8
  PI4 tone3 : 1.336.050.792,96875 Hz : 0x7F76
 
-
- Setup Programs are provided to calibrate the
- internal Attiny RC-oscillator and OCXO for
- right frequency's for CW and PI4
-
- During setup() the RC-oscillator is adjusted
- to improve symbol accuracy.
 
  The control range in the prototype around 10Mhz
  is about 0,1877 Hz / digit. This will vary
@@ -203,7 +197,7 @@ const int dsymbol = 166;
 long int r0, r1, r2, r3, r4, r5;
 
 
-// Write data to ADF code developed by PA0FYM, PA3AXA Hardware
+// Write data to ADF SPI code, adapted from https://github.com/OK1CDJ
 //----------------------------------------------------------------------------------------
 
 void write2PLL(uint32_t PLLword) {          // clocks 32 bits word  directly to the ADF4351
