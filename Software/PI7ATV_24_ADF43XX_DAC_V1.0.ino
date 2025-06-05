@@ -389,9 +389,12 @@ void setup () {
 
 delay(2000);                     // Wait for ADF5341 to powerup
 
-  OSCCAL -= 39;                   // User calibration ATTiny clock
-  								               // for correct PI4 symbol timing
 
+/*Only needed if used without a crystal oscillator
+
+OSCCAL -= 39;                   // User calibration ATTiny clock
+  								  // for correct PI4 symbol timing
+*/
  
 /* Pre Init to program the ADF4350/51 */
 
